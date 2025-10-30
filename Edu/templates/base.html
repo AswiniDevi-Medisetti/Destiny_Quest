@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Destiny Quest - Your Educational Roadmap</title>
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #3498db;
+            --secondary: #2c3e50;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --success: #2ecc71;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+            color: var(--light);
+            min-height: 100vh;
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: rgba(44, 62, 80, 0.9);
+            padding: 20px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo h1 {
+            font-size: 2.2rem;
+            background: linear-gradient(to right, #3498db, #e74c3c);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 700;
+        }
+
+        .logo-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            padding: 8px 15px;
+            border-radius: 5px;
+        }
+
+        nav a:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 80px 0;
+            background-color: rgba(0, 0, 0, 0.4);
+            border-radius: 15px;
+            margin: 30px 0;
+        }
+
+        .hero h2 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero p {
+            font-size: 1.4rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            line-height: 1.6;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            color: white;
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Roadmap Section */
+        .roadmap-section {
+            background-color: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 40px;
+            margin: 40px 0;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 2.5rem;
+            position: relative;
+        }
+
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 5px;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            margin: 15px auto;
+            border-radius: 5px;
+        }
+
+        .roadmap-container {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .roadmap-stage {
+            background-color: rgba(255, 255, 255, 0.15);
+            border-radius: 10px;
+            padding: 25px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border-left: 5px solid var(--primary);
+        }
+
+        .roadmap-stage:hover {
+            transform: translateX(10px);
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .stage-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .stage-title {
+            font-size: 1.8rem;
+            color: var(--light);
+        }
+
+        .stage-year {
+            background-color: var(--accent);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+
+        .stage-description {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .stage-courses {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .course-card {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 15px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .course-card:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-5px);
+        }
+
+        .course-card h4 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+
+        .course-card p {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* Course Details Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f);
+            margin: 50px auto;
+            padding: 30px;
+            border-radius: 15px;
+            max-width: 900px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            font-size: 2rem;
+            color: white;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .close-modal:hover {
+            color: var(--accent);
+        }
+
+        .modal-header {
+            margin-bottom: 25px;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+            padding-bottom: 15px;
+        }
+
+        .modal-header h2 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+
+        .modal-body {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .info-section {
+            margin-bottom: 25px;
+        }
+
+        .info-section h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+            border-left: 4px solid var(--accent);
+            padding-left: 10px;
+        }
+
+        .info-section ul {
+            list-style-type: none;
+        }
+
+        .info-section li {
+            margin-bottom: 10px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .info-section li:before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+        }
+
+        .resource-link {
+            display: inline-block;
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 8px 15px;
+            border-radius: 5px;
+            margin: 5px 10px 5px 0;
+            text-decoration: none;
+            color: var(--light);
+            transition: all 0.3s ease;
+        }
+
+        .resource-link:hover {
+            background-color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        /* Footer */
+        footer {
+            background-color: rgba(44, 62, 80, 0.9);
+            padding: 40px 0 20px;
+            margin-top: 60px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-column h3:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 3px;
+            background-color: var(--accent);
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column li {
+            margin-bottom: 12px;
+        }
+
+        .footer-column a {
+            color: var(--light);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-column a:hover {
+            color: var(--primary);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .modal-body {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .hero h2 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+            }
+
+            .roadmap-section {
+                padding: 25px;
+            }
+
+            .stage-courses {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <div class="logo-icon">🎯</div>
+                <h1>Destiny Quest</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Roadmap</a></li>
+                    <li><a href="#">Courses</a></li>
+                    <li><a href="#">Colleges</a></li>
+                    <li><a href="#">Resources</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h2>Your Educational Journey Starts Here</h2>
+            <p>Discover your path from 10th grade to Master's degree with detailed roadmaps, course information, and career guidance.</p>
+            <a href="#roadmap" class="cta-button">Explore Roadmap</a>
+        </div>
+    </section>
+
+    <!-- Roadmap Section -->
+    <section class="roadmap-section" id="roadmap">
+        <div class="container">
+            <h2 class="section-title">Educational Roadmap</h2>
+            <div class="roadmap-container">
+                <!-- Stage 1: After 10th -->
+                <div class="roadmap-stage" onclick="showCourseDetails('after10th')">
+                    <div class="stage-header">
+                        <h3 class="stage-title">After 10th Grade</h3>
+                        <span class="stage-year">Age 15-16</span>
+                    </div>
+                    <p class="stage-description">Choose your stream for higher secondary education - Science, Commerce, or Arts.</p>
+                    <div class="stage-courses">
+                        <div class="course-card">
+                            <h4>Science (MPC)</h4>
+                            <p>Mathematics, Physics, Chemistry</p>
+                        </div>
+                        <div class="course-card">
+                            <h4>Science (BiPC)</h4>
+                            <p>Biology, Physics, Chemistry</p>
+                        </div>
+                        <div class="course-card">
+                            <h4>Commerce</h4>
+                            <p>Business Studies, Economics, Accounts</p>
+                        </div>
+                        <div class="course-card">
+                            <h4>Arts/Humanities</h4>
+                            <p>History, Political Science, Sociology</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stage 2: After 12th -->
+                <div class="roadmap-stage" onclick="showCourseDetails('after12th')">
+                    <div class="stage-header">
+                        <h3 class="stage-title">After 12th Grade</h3>
+                        <span class="stage-year">Age 17-18</span>
+                    </div>
+                    <p class="stage-description">Choose your undergraduate program based on your interests and career goals.</p>
+                    <div class="stage-courses">
+                        <div class="course-card">
+                            <h4>Engineering</h4>
+                            <p>B.Tech in various specializations</p>
+                        </div>
+                        <div class="course-card">
+                            <h4>Medical</h4>
+                            <p>MBBS, BDS, Pharmacy, Nursing</p>
+                        </div>
+                        <div class="course-card">
+                            <h4>Commerce</h4>
+                            <p>B.Com, BBA, CA, CS</p>
+                        </div>
+                        <div class="course-card">
+                            <h4>Arts & Humanities</h4>
+                            <p>BA in various subjects</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stage 3: After Graduation -->
+                <div class="roadmap-stage" onclick="showCourseDetails('afterGraduation')">
+                    <div class="stage-header">
+                        <h3 class="stage-title">After Graduation</h3>
+                        <span class="stage-year">Age 21-22</span>
+                    </div>
+                    <p class="stage-description">Pursue postgraduate studies or professional courses to specialize in your field.</p>
+                    <div class="stage-courses">
+                        <div class="course-card">
+                            <h4>Master's Degrees</h4>
+                            <p>M.Tech, MBA, M.Sc, MA</p>
+                        </div>
+                        <div class="course-card">
+                            <h4>Professional Courses</h4>
+                            <p>PGDM, PG Certification</p>
+                        </div>
+                        <div class="course-card">
+                            <h4>Research</h4>
+                            <p>M.Phil, Ph.D programs</p>
+                        </div>
+                        <div class="course-card">
+                            <h4>Government Exams</h4>
+                            <p>UPSC, SSC, Banking</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Course Details Modal -->
+    <div id="courseModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <div class="modal-header">
+                <h2 id="modalTitle">Course Details</h2>
+                <p id="modalSubtitle">Complete information about the selected course</p>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <div class="info-section">
+                        <h3>Course Overview</h3>
+                        <p id="courseOverview">Course overview information will appear here.</p>
+                    </div>
+                    <div class="info-section">
+                        <h3>Subjects & Curriculum</h3>
+                        <ul id="courseSubjects">
+                            <li>Subject 1</li>
+                            <li>Subject 2</li>
+                            <li>Subject 3</li>
+                        </ul>
+                    </div>
+                    <div class="info-section">
+                        <h3>Career Opportunities</h3>
+                        <ul id="careerOpportunities">
+                            <li>Career 1</li>
+                            <li>Career 2</li>
+                            <li>Career 3</li>
+                        </ul>
+                    </div>
+                </div>
+                <div>
+                    <div class="info-section">
+                        <h3>Top Colleges</h3>
+                        <ul id="topColleges">
+                            <li>College 1</li>
+                            <li>College 2</li>
+                            <li>College 3</li>
+                        </ul>
+                    </div>
+                    <div class="info-section">
+                        <h3>Learning Resources</h3>
+                        <div>
+                            <a href="#" class="resource-link">YouTube Playlist</a>
+                            <a href="#" class="resource-link">Online Course</a>
+                            <a href="#" class="resource-link">Study Materials</a>
+                            <a href="#" class="resource-link">Practice Tests</a>
+                        </div>
+                    </div>
+                    <div class="info-section">
+                        <h3>Key Information</h3>
+                        <ul id="keyInformation">
+                            <li>Duration: X years</li>
+                            <li>Average Fees: ₹X - ₹Y</li>
+                            <li>Entrance Exams: Exam1, Exam2</li>
+                            <li>Market Demand: High</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Destiny Quest</h3>
+                    <p>Your comprehensive educational roadmap platform guiding students from 10th grade to Master's degree with detailed information on courses, colleges, and career paths.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Educational Roadmap</a></li>
+                        <li><a href="#">Course Catalog</a></li>
+                        <li><a href="#">College Finder</a></li>
+                        <li><a href="#">Career Guidance</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="#">Scholarships</a></li>
+                        <li><a href="#">Entrance Exams</a></li>
+                        <li><a href="#">Study Materials</a></li>
+                        <li><a href="#">Online Courses</a></li>
+                        <li><a href="#">Blog & Articles</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <ul>
+                        <li>Email: info@destinyquest.com</li>
+                        <li>Phone: +91 98765 43210</li>
+                        <li>Address:corangi, kkd, India</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2022 Destiny Quest. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Sample course data
+        const courseData = {
+            after10th: {
+                title: "After 10th Grade - Stream Selection",
+                subtitle: "Choosing the right path after secondary education",
+                overview: "After completing 10th grade, students need to select a stream for their higher secondary education (11th and 12th). This decision plays a crucial role in shaping their future career options.",
+                subjects: ["Science (MPC): Mathematics, Physics, Chemistry", "Science (BiPC): Biology, Physics, Chemistry", "Commerce: Business Studies, Economics, Accountancy", "Arts/Humanities: History, Political Science, Sociology, Psychology"],
+                careers: ["Engineering and Technology", "Medical and Healthcare", "Business and Management", "Civil Services", "Arts and Literature"],
+                colleges: ["Narayana Junior College", "FIITJEE Junior College", "Sri Chaitanya", "Delhi Public School", "Kendriya Vidyalaya"],
+                keyInfo: ["Duration: 2 years", "Average Fees: ₹20,000 - ₹1,00,000 per year", "Entrance Exams: Foundation courses for JEE/NEET", "Importance: Foundation for higher education"]
+            },
+            after12th: {
+                title: "After 12th Grade - Undergraduate Programs",
+                subtitle: "Choosing your specialization for bachelor's degree",
+                overview: "After completing 12th grade, students can pursue various undergraduate programs based on their stream and interests. This is a critical decision that determines their professional trajectory.",
+                subjects: ["Engineering: B.Tech in CS, Mechanical, Civil, etc.", "Medical: MBBS, BDS, B.Pharm, B.Sc Nursing", "Commerce: B.Com, BBA, BMS, Integrated CA", "Arts: BA in Economics, Psychology, Literature, etc."],
+                careers: ["Software Engineer", "Doctor", "Chartered Accountant", "Business Analyst", "Civil Servant", "Researcher"],
+                colleges: ["IITs, NITs for Engineering", "AIIMS, JIPMER for Medical", "SRCC, LSR for Commerce", "St. Stephen's, Miranda for Arts"],
+                keyInfo: ["Duration: 3-5 years depending on course", "Average Fees: ₹50,000 - ₹10,00,000 per year", "Entrance Exams: JEE, NEET, CUET, CLAT", "Market Demand: Varies by specialization"]
+            },
+            afterGraduation: {
+                title: "After Graduation - Postgraduate Options",
+                subtitle: "Specializing further with master's degrees and professional courses",
+                overview: "After completing a bachelor's degree, students can opt for postgraduate studies to specialize in their field, pursue research, or prepare for competitive exams for government jobs.",
+                subjects: ["Master's Degrees: M.Tech, MBA, M.Sc, MA", "Professional Courses: PGDM, PGDCA, PG Certification", "Research: M.Phil, Ph.D", "Competitive Exams: UPSC, SSC, Banking"],
+                careers: ["Specialized Engineer", "Management Professional", "Research Scientist", "Government Officer", "University Professor"],
+                colleges: ["IITs, IIMs for M.Tech/MBA", "Central Universities for MA/M.Sc", "Research Institutes for Ph.D", "Coaching Centers for Government Exams"],
+                keyInfo: ["Duration: 1-3 years for most courses", "Average Fees: ₹1,00,000 - ₹20,00,000 for full program", "Entrance Exams: GATE, CAT, GMAT, UGC-NET", "ROI: High for specialized professional courses"]
+            }
+        };
+
+        // Function to show course details in modal
+        function showCourseDetails(courseKey) {
+            const course = courseData[courseKey];
+            const modal = document.getElementById('courseModal');
+            
+            document.getElementById('modalTitle').textContent = course.title;
+            document.getElementById('modalSubtitle').textContent = course.subtitle;
+            document.getElementById('courseOverview').textContent = course.overview;
+            
+            // Update subjects
+            const subjectsList = document.getElementById('courseSubjects');
+            subjectsList.innerHTML = '';
+            course.subjects.forEach(subject => {
+                const li = document.createElement('li');
+                li.textContent = subject;
+                subjectsList.appendChild(li);
+            });
+            
+            // Update careers
+            const careersList = document.getElementById('careerOpportunities');
+            careersList.innerHTML = '';
+            course.careers.forEach(career => {
+                const li = document.createElement('li');
+                li.textContent = career;
+                careersList.appendChild(li);
+            });
+            
+            // Update colleges
+            const collegesList = document.getElementById('topColleges');
+            collegesList.innerHTML = '';
+            course.colleges.forEach(college => {
+                const li = document.createElement('li');
+                li.textContent = college;
+                collegesList.appendChild(li);
+            });
+            
+            // Update key info
+            const keyInfoList = document.getElementById('keyInformation');
+            keyInfoList.innerHTML = '';
+            course.keyInfo.forEach(info => {
+                const li = document.createElement('li');
+                li.textContent = info;
+                keyInfoList.appendChild(li);
+            });
+            
+            modal.style.display = 'block';
+        }
+
+        // Function to close modal
+        function closeModal() {
+            document.getElementById('courseModal').style.display = 'none';
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('courseModal');
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>

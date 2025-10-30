@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Destiny Quest - Your Educational Roadmap</title>
+    <style>
+        /* Your existing CSS remains exactly the same */
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #3498db;
+            --secondary: #2c3e50;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --success: #2ecc71;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+            color: var(--light);
+            min-height: 100vh;
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: rgba(44, 62, 80, 0.9);
+            padding: 20px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo h1 {
+            font-size: 2.2rem;
+            background: linear-gradient(to right, #3498db, #e74c3c);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 700;
+        }
+
+        .logo-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            padding: 8px 15px;
+            border-radius: 5px;
+        }
+
+        nav a:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 80px 0;
+            background-color: rgba(0, 0, 0, 0.4);
+            border-radius: 15px;
+            margin: 30px 0;
+        }
+
+        .hero h2 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero p {
+            font-size: 1.4rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            line-height: 1.6;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            color: white;
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Roadmap Section */
+        .roadmap-section {
+            background-color: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 40px;
+            margin: 40px 0;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 2.5rem;
+            position: relative;
+        }
+
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 5px;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            margin: 15px auto;
+            border-radius: 5px;
+        }
+
+        .roadmap-container {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .roadmap-stage {
+            background-color: rgba(255, 255, 255, 0.15);
+            border-radius: 10px;
+            padding: 25px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border-left: 5px solid var(--primary);
+        }
+
+        .roadmap-stage:hover {
+            transform: translateX(10px);
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .stage-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .stage-title {
+            font-size: 1.8rem;
+            color: var(--light);
+        }
+
+        .stage-year {
+            background-color: var(--accent);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+
+        .stage-description {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .stage-courses {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .course-card {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 15px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .course-card:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-5px);
+        }
+
+        .course-card h4 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+
+        .course-card p {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* Course Details Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f);
+            margin: 50px auto;
+            padding: 30px;
+            border-radius: 15px;
+            max-width: 900px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            font-size: 2rem;
+            color: white;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .close-modal:hover {
+            color: var(--accent);
+        }
+
+        .modal-header {
+            margin-bottom: 25px;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+            padding-bottom: 15px;
+        }
+
+        .modal-header h2 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+
+        .modal-body {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .info-section {
+            margin-bottom: 25px;
+        }
+
+        .info-section h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+            border-left: 4px solid var(--accent);
+            padding-left: 10px;
+        }
+
+        .info-section ul {
+            list-style-type: none;
+        }
+
+        .info-section li {
+            margin-bottom: 10px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .info-section li:before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+        }
+
+        .resource-link {
+            display: inline-block;
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 8px 15px;
+            border-radius: 5px;
+            margin: 5px 10px 5px 0;
+            text-decoration: none;
+            color: var(--light);
+            transition: all 0.3s ease;
+        }
+
+        .resource-link:hover {
+            background-color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        /* Footer */
+        footer {
+            background-color: rgba(44, 62, 80, 0.9);
+            padding: 40px 0 20px;
+            margin-top: 60px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-column h3:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 3px;
+            background-color: var(--accent);
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column li {
+            margin-bottom: 12px;
+        }
+
+        .footer-column a {
+            color: var(--light);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-column a:hover {
+            color: var(--primary);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .modal-body {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .hero h2 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+            }
+
+            .roadmap-section {
+                padding: 25px;
+            }
+
+            .stage-courses {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .loading {
+            text-align: center;
+            padding: 20px;
+            color: var(--primary);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <div class="logo-icon">🎯</div>
+                <h1>Destiny Quest</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Roadmap</a></li>
+                    <li><a href="#">Courses</a></li>
+                    <li><a href="#">Colleges</a></li>
+                    <li><a href="#">Resources</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h2>Your Educational Journey Starts Here</h2>
+            <p>Discover your path from 10th grade to Master's degree with detailed roadmaps, course information, and career guidance.</p>
+            <a href="#roadmap" class="cta-button">Explore Roadmap</a>
+        </div>
+    </section>
+
+    <!-- Roadmap Section -->
+    <section class="roadmap-section" id="roadmap">
+        <div class="container">
+            <h2 class="section-title">Educational Roadmap</h2>
+            <div class="roadmap-container" id="roadmapContainer">
+                <div class="loading">Loading roadmap data...</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Course Details Modal -->
+    <div id="courseModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <div class="modal-header">
+                <h2 id="modalTitle">Course Details</h2>
+                <p id="modalSubtitle">Complete information about the selected course</p>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <div class="info-section">
+                        <h3>Course Overview</h3>
+                        <p id="courseOverview">Course overview information will appear here.</p>
+                    </div>
+                    <div class="info-section">
+                        <h3>Subjects & Curriculum</h3>
+                        <ul id="courseSubjects">
+                            <li>Loading subjects...</li>
+                        </ul>
+                    </div>
+                    <div class="info-section">
+                        <h3>Career Opportunities</h3>
+                        <ul id="careerOpportunities">
+                            <li>Loading career opportunities...</li>
+                        </ul>
+                    </div>
+                </div>
+                <div>
+                    <div class="info-section">
+                        <h3>Top Colleges</h3>
+                        <ul id="topColleges">
+                            <li>Loading colleges...</li>
+                        </ul>
+                    </div>
+                    <div class="info-section">
+                        <h3>Learning Resources</h3>
+                        <div id="resourcesContainer">
+                            <a href="#" class="resource-link">Loading resources...</a>
+                        </div>
+                    </div>
+                    <div class="info-section">
+                        <h3>Key Information</h3>
+                        <ul id="keyInformation">
+                            <li>Loading information...</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Destiny Quest</h3>
+                    <p>Your comprehensive educational roadmap platform guiding students from 10th grade to Master's degree with detailed information on courses, colleges, and career paths.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Educational Roadmap</a></li>
+                        <li><a href="#">Course Catalog</a></li>
+                        <li><a href="#">College Finder</a></li>
+                        <li><a href="#">Career Guidance</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="#">Scholarships</a></li>
+                        <li><a href="#">Entrance Exams</a></li>
+                        <li><a href="#">Study Materials</a></li>
+                        <li><a href="#">Online Courses</a></li>
+                        <li><a href="#">Blog & Articles</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <ul>
+                        <li>Email: info@destinyquest.com</li>
+                        <li>Phone: +91 98765 43210</li>
+                        <li>Address: Corangi, Kakinada, India</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2022 Destiny Quest. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // API base URL
+        const API_BASE = '/api';
+
+        // Load roadmap data when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            loadRoadmapData();
+        });
+
+        // Load all roadmap data from Flask API
+        async function loadRoadmapData() {
+            try {
+                const roadmapContainer = document.getElementById('roadmapContainer');
+                roadmapContainer.innerHTML = '<div class="loading">Loading roadmap data...</div>';
+
+                // Fetch stages from API
+                const stagesResponse = await fetch(`${API_BASE}/stages`);
+                const stagesData = await stagesResponse.json();
+
+                if (!stagesData.success) {
+                    throw new Error(stagesData.error);
+                }
+
+                let roadmapHTML = '';
+
+                // Load courses for each stage
+                for (const stage of stagesData.stages) {
+                    const coursesResponse = await fetch(`${API_BASE}/courses/${stage}`);
+                    const coursesData = await coursesResponse.json();
+
+                    if (coursesData.success) {
+                        roadmapHTML += createStageHTML(stage, coursesData.courses);
+                    }
+                }
+
+                roadmapContainer.innerHTML = roadmapHTML;
+
+            } catch (error) {
+                console.error('Error loading roadmap data:', error);
+                document.getElementById('roadmapContainer').innerHTML = 
+                    '<div class="loading">Error loading data. Please try again later.</div>';
+            }
+        }
+
+        // Create HTML for each educational stage
+        function createStageHTML(stage, courses) {
+            const stageTitles = {
+                'after10th': 'After 10th Grade',
+                'after12th': 'After 12th Grade', 
+                'afterGraduation': 'After Graduation'
+            };
+
+            const stageYears = {
+                'after10th': 'Age 15-16',
+                'after12th': 'Age 17-18',
+                'afterGraduation': 'Age 21-22'
+            };
+
+            const stageDescriptions = {
+                'after10th': 'Choose your stream for higher secondary education - Science, Commerce, or Arts.',
+                'after12th': 'Choose your undergraduate program based on your interests and career goals.',
+                'afterGraduation': 'Pursue postgraduate studies or professional courses to specialize in your field.'
+            };
+
+            let coursesHTML = '';
+            courses.forEach(course => {
+                coursesHTML += `
+                    <div class="course-card" onclick="showCourseDetails('${course._id}')">
+                        <h4>${course.name}</h4>
+                        <p>${course.description.substring(0, 100)}...</p>
+                    </div>
+                `;
+            });
+
+            return `
+                <div class="roadmap-stage">
+                    <div class="stage-header">
+                        <h3 class="stage-title">${stageTitles[stage] || stage}</h3>
+                        <span class="stage-year">${stageYears[stage] || ''}</span>
+                    </div>
+                    <p class="stage-description">${stageDescriptions[stage] || ''}</p>
+                    <div class="stage-courses">
+                        ${coursesHTML}
+                    </div>
+                </div>
+            `;
+        }
+
+        // Fetch and display course details from Flask API
+        async function showCourseDetails(courseId) {
+            try {
+                const response = await fetch(`${API_BASE}/course/${courseId}`);
+                const data = await response.json();
+
+                if (data.success) {
+                    displayCourseModal(data.course);
+                } else {
+                    alert('Error loading course details: ' + data.error);
+                }
+            } catch (error) {
+                console.error('Error fetching course details:', error);
+                alert('Error loading course details. Please try again.');
+            }
+        }
+
+        // Display course details in modal
+        function displayCourseModal(course) {
+            const modal = document.getElementById('courseModal');
+            
+            document.getElementById('modalTitle').textContent = course.name;
+            document.getElementById('modalSubtitle').textContent = course.description;
+            document.getElementById('courseOverview').textContent = course.description;
+            
+            // Update subjects
+            const subjectsList = document.getElementById('courseSubjects');
+            subjectsList.innerHTML = '';
+            if (course.subjects && Array.isArray(course.subjects)) {
+                course.subjects.forEach(subject => {
+                    const li = document.createElement('li');
+                    li.textContent = subject;
+                    subjectsList.appendChild(li);
+                });
+            }
+            
+            // Update careers
+            const careersList = document.getElementById('careerOpportunities');
+            careersList.innerHTML = '';
+            if (course.career_opportunities && Array.isArray(course.career_opportunities)) {
+                course.career_opportunities.forEach(career => {
+                    const li = document.createElement('li');
+                    li.textContent = career;
+                    careersList.appendChild(li);
+                });
+            }
+            
+            // Update colleges
+            const collegesList = document.getElementById('topColleges');
+            collegesList.innerHTML = '';
+            if (course.colleges && course.colleges.length > 0) {
+                course.colleges.forEach(college => {
+                    const li = document.createElement('li');
+                    li.textContent = `${college.name} (${college.location}) - ${college.type}`;
+                    collegesList.appendChild(li);
+                });
+            } else {
+                collegesList.innerHTML = '<li>No college data available</li>';
+            }
+            
+            // Update resources
+            const resourcesContainer = document.getElementById('resourcesContainer');
+            resourcesContainer.innerHTML = '';
+            if (course.resources && course.resources.length > 0) {
+                course.resources.forEach(resource => {
+                    const link = document.createElement('a');
+                    link.href = resource.url;
+                    link.className = 'resource-link';
+                    link.textContent = resource.title;
+                    link.target = '_blank';
+                    resourcesContainer.appendChild(link);
+                });
+            } else {
+                resourcesContainer.innerHTML = '<span>No resources available</span>';
+            }
+            
+            // Update key info
+            const keyInfoList = document.getElementById('keyInformation');
+            keyInfoList.innerHTML = '';
+            const keyInfo = [
+                `Duration: ${course.duration || 'Not specified'}`,
+                `Average Fees: ${course.avg_fees || 'Not specified'}`,
+                `Entrance Exams: ${course.entrance_exams ? course.entrance_exams.join(', ') : 'Various'}`,
+                `Market Demand: ${course.market_demand || 'Not specified'}`
+            ];
+            
+            keyInfo.forEach(info => {
+                const li = document.createElement('li');
+                li.textContent = info;
+                keyInfoList.appendChild(li);
+            });
+            
+            modal.style.display = 'block';
+        }
+
+        // Function to close modal
+        function closeModal() {
+            document.getElementById('courseModal').style.display = 'none';
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('courseModal');
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>
